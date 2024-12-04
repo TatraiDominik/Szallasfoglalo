@@ -6,13 +6,16 @@ import { NotfoundComponent } from './components/notfound/notfound.component';
 import { RoominfoComponent } from './components/roominfo/roominfo.component';
 import { LostpassComponent } from './components/lostpass/lostpass.component';
 import { LogoutComponent } from './components/logout/logout.component';
+import { MybookingsComponent } from './components/mybookings/mybookings.component';
+import { ManageBookingsComponent } from './components/manage-bookings/manage-bookings.component';
+import { ManageRoomsComponent } from './components/manage-rooms/manage-rooms.component';
 
 export const routes: Routes = [
+  /*
+    logged out routes
+  */ 
   {
     path: 'login', component: LoginComponent
-  },
-  {
-    path: 'logout', component: LogoutComponent
   },
   {
     path: 'registration', component: RegistrationComponent
@@ -31,5 +34,28 @@ export const routes: Routes = [
   },
   {
     path: '**', component: NotfoundComponent
-  }
+  },
+  /*
+    logged in routes
+  */ 
+  {
+    path: 'logout', component: LogoutComponent
+  },
+  /* user routes */
+  {
+    path: 'bookings', component: MybookingsComponent
+  },
+  /* admin routes */
+  {
+    path: 'admin', 
+    children:[
+      {
+        path:'rooms', component: ManageRoomsComponent
+      },
+      {
+        path:'bookings',component: ManageBookingsComponent
+      }
+    ]
+  },
+
 ];
